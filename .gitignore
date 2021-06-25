@@ -6,4 +6,4 @@
 
 # Pre-commit
 .flake8
-pre-commit-config.yaml
+.pre-commit-config.yaml
