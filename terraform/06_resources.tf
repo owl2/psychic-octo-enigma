@@ -1,13 +1,7 @@
 resource "aws_s3_bucket" "bucket" {
-    bucket = "20210402-bucket-tf"
-    acl    = "private"
-
-    tags = {
-        Name        = "My Bucket 20210402"
-        Environment = "Dev"
-    }
+  bucket = "lmu"
+  acl    = "private"
 }
-
 
 resource "aws_iam_role" "firehose_role" {
   name = "firehose_test_role"
@@ -29,9 +23,8 @@ resource "aws_iam_role" "firehose_role" {
 EOF
 }
 
-
 resource "aws_kinesis_firehose_delivery_stream" "test_stream" {
-  name        = "20210402-kinesis-firehose-stream"
+  name        = "terraform-kinesis-firehose-test-stream"
   destination = "s3"
 
   s3_configuration {
