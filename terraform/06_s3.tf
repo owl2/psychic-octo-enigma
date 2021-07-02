@@ -6,6 +6,8 @@ resource "aws_s3_bucket" "lmu-external-sources" {
     tags = {
     Name        = "lmu-external-sources"
   }
+
+  force_destroy = true
 }
 
 
@@ -17,6 +19,8 @@ resource "aws_s3_bucket" "lmu-bronze_bucket" {
   tags = {
     Name        = "lmu-datalake-bronze"
   }
+
+  force_destroy = true
 }
 
 
@@ -28,6 +32,8 @@ resource "aws_s3_bucket" "lmu-silver_bucket" {
   tags = {
     Name        = "lmu-datalake-silver"
   }
+
+  force_destroy = true
 }
 
 
@@ -39,4 +45,6 @@ resource "aws_s3_bucket" "lmu-gold_bucket" {
   tags = {
     Name        = "lmu-datalake-gold"
   }
+
+  force_destroy = true
 }

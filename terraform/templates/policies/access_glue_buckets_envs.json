@@ -4,14 +4,21 @@
         {
             "Effect": "Allow",
             "Action": [
+                "glue:*",
                 "s3:GetObject",
-                "s3:PutObject"
+                "s3:PutObject",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketAcl",
+                "logs:*"
             ],
             "Resource": [
-                "arn:aws:s3:::lmu-data*",
+                "arn:aws:glue:*:*:*",
                 "arn:aws:s3:::lmu-datalake-bronze*",
-                "arn:aws:s3:::lmu-datalake-silver",
-                "arn:aws:s3:::lmu-datalake-gold*"
+                "arn:aws:s3:::lmu-datalake-silver*",
+                "arn:aws:s3:::lmu-datalake-gold*",
+                "arn:aws:logs:*:*:log-group:/aws-glue/*"
             ]
         }
     ]
