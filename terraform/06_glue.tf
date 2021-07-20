@@ -50,3 +50,41 @@ resource "aws_glue_crawler" "gold_crawler" {
     path = "s3://${aws_s3_bucket.lmu-gold_bucket.bucket}"
   }
 }
+
+
+
+#################################
+#           Dev Endpoint        #
+#################################
+
+
+resource "aws_glue_dev_endpoint" "dev_endpoint" {
+  name            = "datalake-dev_endpoint"
+  role_arn        = aws_iam_role.dev_endpoint.arn
+  # worker_type     = "Standard"
+  number_of_nodes = 2
+  glue_version    = "1.0"
+  public_key      = ""
+
+}
+
+resource "aws_iam_role" "dev_endpoint" {
+  name               = "AWSGlueServiceRole-datalake"
+  assume_role_policy = data.aws_iam_policy_document.dev_endpoint.json
+}
+
+data "aws_iam_policy_document" "dev_endpoint" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["glue.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role_policy_attachment" "datalake-AWSGlueServiceRole" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+  role       = aws_iam_role.dev_endpoint.name
+}
