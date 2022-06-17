@@ -1,5 +1,5 @@
 provider "aws" {
   region                  = "us-east-2"
   shared_credentials_file = "~/.aws/credentials"
-  profile                 = "vm-lmu-datalake"
+  profile                 = "lmu"
 }
